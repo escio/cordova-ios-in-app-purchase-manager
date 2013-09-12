@@ -8,6 +8,21 @@
 
 #import "InAppPurchaseManager.h"
 
+@implementation SKProduct (LocalizedPrice)
+
+- (NSString *)localizedPrice
+{
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    [numberFormatter setLocale:self.priceLocale];
+    NSString *formattedString = [numberFormatter stringFromNumber:self.price];
+    [numberFormatter release];
+    return formattedString;
+}
+
+@end
+
 // Help create NSNull objects for nil items (since neither NSArray nor NSDictionary can store nil values).
 #define NILABLE(obj) ((obj) != nil ? (NSObject *)(obj) : (NSObject *)[NSNull null])
 

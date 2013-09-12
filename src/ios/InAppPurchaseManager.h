@@ -12,7 +12,15 @@
 #import <Cordova/CDVPlugin.h>
 #import <Cordova/NSData+Base64.h>
 
-#import "SKProduct+LocalizedPrice.h"
+#import <Foundation/Foundation.h>
+#import <StoreKit/StoreKit.h>
+
+@interface SKProduct (LocalizedPrice)
+
+@property (nonatomic, readonly) NSString *localizedPrice;
+
+@end
+
 
 @interface InAppPurchaseManager : CDVPlugin <SKPaymentTransactionObserver> {
     NSMutableDictionary* list;

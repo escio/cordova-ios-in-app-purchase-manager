@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+    id="com.phonegap.plugins.inapppurchasemanager"
+    version="1.0.0">
+
+    <name>InAppPurchaseManager</name>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0" />
+    </engines>
+
+    <js-module src="www/InAppPurchaseManager.js" name="InAppPurchaseManager">
+        <clobbers target="InAppPurchaseManager" />
+    </js-module>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="InAppPurchaseManager">
+                <param name="ios-package" value="InAppPurchaseManager" />
+            </feature>
+        </config-file>
+
+        <!-- Note: the ios src is based off src/ios implicitly -->
+        <header-file src="src/ios/InAppPurchaseManager.h" />
+        <source-file src="src/ios/InAppPurchaseManager.m" />
+        <framework src="StoreKit.framework" />
+    </platform>
+</plugin>
