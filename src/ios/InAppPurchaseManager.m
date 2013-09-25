@@ -164,9 +164,9 @@
 
 			case SKPaymentTransactionStateRestored:
 				state = @"PaymentTransactionStateRestored";
-				transactionIdentifier = transaction.originalTransaction.transactionIdentifier;
+				transactionIdentifier = transaction.transactionIdentifier;
 				transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
-				productId = transaction.originalTransaction.payment.productIdentifier;
+				productId = transaction.payment.productIdentifier;
                 break;
 
             default:
