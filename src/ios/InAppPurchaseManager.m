@@ -150,7 +150,7 @@
             case SKPaymentTransactionStatePurchased:
 				state = @"PaymentTransactionStatePurchased";
 				transactionIdentifier = transaction.transactionIdentifier;
-				transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
+				transactionReceipt = [[transaction transactionReceipt] cdv_base64EncodedString];
 				productId = transaction.payment.productIdentifier;
                 break;
 
@@ -158,14 +158,14 @@
 				state = @"PaymentTransactionStateFailed";
 				error = transaction.error.localizedDescription;
 				errorCode = transaction.error.code;
-				NSLog(@"[IAP] error %d %@", errorCode, error);
+				NSLog(@"[IAP] error %d %@", (int)errorCode, error);
 
                 break;
 
 			case SKPaymentTransactionStateRestored:
 				state = @"PaymentTransactionStateRestored";
 				transactionIdentifier = transaction.transactionIdentifier;
-				transactionReceipt = [[transaction transactionReceipt] base64EncodedString];
+				transactionReceipt = [[transaction transactionReceipt] cdv_base64EncodedString];
 				productId = transaction.payment.productIdentifier;
                 break;
 
@@ -176,7 +176,7 @@
 		NSLog(@"[IAP] state: %@", state);
         NSArray *callbackArgs = [NSArray arrayWithObjects:
                                  NILABLE(state),
-                                 [NSNumber numberWithInt:errorCode],
+                                 [NSNumber numberWithLong:errorCode],
                                  NILABLE(error),
                                  NILABLE(transactionIdentifier),
                                  NILABLE(productId),
@@ -193,7 +193,7 @@
 
 - (void)paymentQueue:(SKPaymentQueue *)queue restoreCompletedTransactionsFailedWithError:(NSError *)error
 {
-	NSString *js = [NSString stringWithFormat:@"plugins.inAppPurchaseManager.onRestoreCompletedTransactionsFailed(%d)", error.code];
+	NSString *js = [NSString stringWithFormat:@"plugins.inAppPurchaseManager.onRestoreCompletedTransactionsFailed(%d)", (int)error.code];
     [self.webView stringByEvaluatingJavaScriptFromString:js];
 }
 
