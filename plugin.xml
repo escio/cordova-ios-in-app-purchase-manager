@@ -23,7 +23,7 @@
 
         <!-- Note: the ios src is based off src/ios implicitly -->
         <header-file src="src/ios/InAppPurchaseManager.h" />
-        <source-file src="src/ios/InAppPurchaseManager.m" />
+        <source-file src="src/ios/InAppPurchaseManager.m" compiler-flags="-fno-objc-arc" />
         <framework src="StoreKit.framework" />
     </platform>
 </plugin>
